@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: Demo spring-boot keycloak etc
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/dev
+            authorization-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/dev/protocol/openid-connect/auth
+            token-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/dev/protocol/openid-connect/token
+            user-info-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/dev/protocol/openid-connect/userinfo
+            jwk-set-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/dev/protocol/openid-connect/certs
+        registration:
+          keycloak:
+            provider: keycloak
+            client-name: keycloak
+            client-id: ucare_poc_client
+            client-secret: O3fC9NQqnsC2NsLLGPYreRrOrY1fpDNl
+            scope:
+              - openid
+              - offline_access
+              - profile
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
+
+app:
+  config:
+    name: Nume Aplicatie
+    email: email@localhost.tld
+    retry_number: 10
+    logout: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/dev/protocol/openid-connect/logout
+
+token:
+  converter:
+    principal-attribute: preferred_username
+    resource-id: demo-app
+
+logging:
+  level:
+    org:
+      springframework:
+        security: INFO
+  pattern:
+    console: logger %d{dd-MM-yyyy HH:mm:ss} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n
