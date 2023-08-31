@@ -18,8 +18,8 @@ spring:
           keycloak:
             provider: keycloak
             client-name: keycloak
-            client-id: ucare_poc_client
-            client-secret: O3fC9NQqnsC2NsLLGPYreRrOrY1fpDNl
+            client-id: xxxxx
+            client-secret: xxxxxx
             scope:
               - openid
               - offline_access
