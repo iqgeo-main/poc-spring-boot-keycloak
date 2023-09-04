@@ -14,7 +14,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-//    private final CustomWebFilter customWebFilter;
     private final AppConfig appConfig;
 
     @Bean
@@ -24,7 +23,6 @@ public class SecurityConfiguration {
                         authorizeRequests.requestMatchers("/callback").permitAll()
                                 .anyRequest().authenticated()
                 )
-//                .addFilterAfter(customWebFilter, UsernamePasswordAuthenticationFilter.class)
                 .oauth2Login(withDefaults());
         http.logout(logout ->
                 logout.logoutSuccessUrl(appConfig.logout())

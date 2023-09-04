@@ -18,6 +18,7 @@ public class TestService {
         log.info("name {}", appConfig.name());
         log.info("email {}", appConfig.email());
         log.info("retry_number {}", appConfig.retryNumber());
+        log.info("logout_url {}", appConfig.logout());
     }
 
 }

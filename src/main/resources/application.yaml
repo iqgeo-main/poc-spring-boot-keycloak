@@ -9,21 +9,22 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/dev
-            authorization-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/dev/protocol/openid-connect/auth
-            token-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/dev/protocol/openid-connect/token
-            user-info-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/dev/protocol/openid-connect/userinfo
-            jwk-set-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/dev/protocol/openid-connect/certs
+            issuer-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/ucare
+            authorization-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/ucare/protocol/openid-connect/auth
+            token-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/ucare/protocol/openid-connect/token
+            user-info-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/ucare/protocol/openid-connect/userinfo
+            jwk-set-uri: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/ucare/protocol/openid-connect/certs
         registration:
           keycloak:
             provider: keycloak
             client-name: keycloak
-            client-id: xxxxx
-            client-secret: xxxxxx
+            client-id: ${CLIENT_ID_CARREFOUR_KEYCLOAK}
+            client-secret: ${CLIENT_SECRET_CARREFOUR_KEYCLOAK}
             scope:
               - openid
               - offline_access
               - profile
+              - email
             authorization-grant-type: authorization_code
             redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
 
@@ -32,12 +33,10 @@ app:
     name: Nume Aplicatie
     email: email@localhost.tld
     retry_number: 10
-    logout: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/dev/protocol/openid-connect/logout
-
-token:
-  converter:
-    principal-attribute: preferred_username
-    resource-id: demo-app
+    logout: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/ucare/protocol/openid-connect/logout
+    keycloak_token_endpoint: https://keycloak-dev-ro-tc.carrefour.ro/auth/realms/ucare/protocol/openid-connect/token
+    keycloak_client_id: ${CLIENT_ID_CARREFOUR_KEYCLOAK}
+    keycloak_client_secret: ${CLIENT_SECRET_CARREFOUR_KEYCLOAK}
 
 logging:
   level:
